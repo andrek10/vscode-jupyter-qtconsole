@@ -1,4 +1,7 @@
 # vscode-jupyter-qtconsole
+
+DISCONTINUED --- Use vscode-ipython-console instead
+
 Run Python code in a Jupyter QTconsole embedded in VSCode. Extension. 
 Supports only Windows at the moment, and requires AutoHotKey installed.
 Tested to work on a standard Anaconda python installation.
