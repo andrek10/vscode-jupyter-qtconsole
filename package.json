@@ -19,7 +19,7 @@
     "commands": [
       {
         "command": "extension.startConsole",
-        "title": "Start IPython QTConsole"
+        "title": "Initialize relevant consoles"
       },
       {
         "command": "extension.runPython",
@@ -41,7 +41,6 @@
     "typescript": "^2.5.2",
     "vscode": "^1.1.5"
   },
-  "dependencies": {
-  },
+  "dependencies": {},
   "optionalDependencies": {}
 }

@@ -6,14 +6,12 @@ class CodeManager_1 {
     //field - initialize constructor .this items
     terminal
     terminal_ahk
-    terminal_qtcon
     terminalsOpened
 
     //Constructor
     constructor() {
         this.terminal = null;
         this.terminal_ahk = null;
-        this.terminal_qtcon = null;
         this.terminalsOpened = null;
     }
 
@@ -27,11 +25,12 @@ class CodeManager_1 {
         
         // Get filename of current file
         var filename = editor.document.fileName;
-
+        
         //Make IPython Command
-        var ipyCom = "execfile(r\"";
-        ipyCom = ipyCom.concat(filename);
-        ipyCom = ipyCom.concat("\");");
+        var ipyCom = "run ".concat(filename);
+        // var ipyCom = "execfile(r\"";
+        // ipyCom = ipyCom.concat(filename);
+        // ipyCom = ipyCom.concat("\");");
 
         //Send IPython command
         this.terminal.show();
@@ -39,7 +38,6 @@ class CodeManager_1 {
 
         //Send enterkey via AutoHotKey
         this.terminal_ahk.sendText("sendEnter.ahk", true);
-
     }
     makeTerminal() {
 
@@ -55,12 +53,6 @@ class CodeManager_1 {
             }
 
             try {
-                this.terminal_qtcon.dispose()
-            }
-            catch (e) {
-                console.log("Terminal QTConsole already closed");
-            }
-            try {
                 this.terminal.dispose()
             }
             catch (e) {
@@ -75,17 +67,9 @@ class CodeManager_1 {
         //this.terminal_ahk.sendText("cd ak-ipython\\src")
         this.terminal_ahk.sendText("cd .vscode\\extensions\\vscode-jupyter-qtconsole\\src")
 
-        // Make QTConsole terminal
-        this.terminal_qtcon = vscode.window.createTerminal("qtConsole");
-        this.terminal_qtcon.sendText("jupyter qtconsole")
-
-        // Make IPython console interface to the existing qtconsole
-        this.terminal = vscode.window.createTerminal("Console");
-        this.terminal.show();
-        this.terminal.sendText("ping localhost -n 6 > nul"); // Sleep for 5 seconds (6 - 1)
-        this.terminal.show();
-        this.terminal.sendText("jupyter console --existing", true);
-        this.terminal.sendText("\%matplotlib qt5", false);
+        // Make IPython terminal
+        this.terminal = vscode.window.createTerminal("IPython");
+        this.terminal.show()
     }
 };
 
